@@ -1,0 +1,19 @@
+# Begrüßungsnachricht, die nur der beitretende Spieler sieht
+welcome_user: "Willkommen %vault_prefix% %player_name% auf dem Server %server_name%"
+# Begrüßungsnachricht, die alle Spieler sehen
+welcome: "%vault_prefix% %player% ist dem Server %server_name% beigetreten"
+# Abschiedsnachricht, die alle Spieler sehen, wenn jemand den Server verlässt
+goodbye: "%vault_prefix% %player_name% hat den Server %server_name% verlassen"
+
+messages:
+  help_header: "===== Primerplugin Befehle ====="
+  help_version: "/primerplugin version - Zeigt die Plugin-Version an"
+  help_reload: "/primerplugin reload - Lädt die Konfiguration neu"
+  help_messagesoutput: "/primerplugin messagesoutput - Zeigt die Ausstiegsnachricht"
+  help_help: "/primerplugin help - Zeigt diese Hilfe an"
+  version_message: "Plugin-Version: "
+  no_permission: "Du hast keine Berechtigung, diesen Befehl zu verwenden."
+  config_reloaded: "Konfiguration erfolgreich neu geladen."
+  only_in_game: "Dieser Befehl kann nur im Spiel verwendet werden."
+  exit_message_show: "Ausstiegsnachricht, die du erhalten würdest: "
+  unknown_subcommand: "Unbekannter Unterbefehl. Verwende: help, reload, version, mensajesalida"

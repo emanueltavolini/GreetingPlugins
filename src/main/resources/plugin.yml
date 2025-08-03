@@ -1,0 +1,26 @@
+name: Greeting
+version: 1.0
+main: org.emagamer12322plugin.greeting.GreetingPlugin
+api-version: 1.16
+softdepend: [PlaceholderAPI]
+
+commands:
+  greeting:
+    description: Main command of the Primerplugin plugin
+    usage: /greeting <subcomando>
+permissions:
+  greeting.help:
+    description: Allows you to use the /greeting help command
+    default: true
+  greeting.version:
+    description: Allows you to use the /greeting version command
+    default: op
+  greeting.reload:
+    description: Allows you to use the /greeting reload command
+    default: op
+  greeting.messagesoutput:
+    description: Allows you to use the /greeting command outputmessage
+    default: true
+  greeting.setlang:
+    description: Allows you to use the /greeting setlang command to change the language
+    default: true

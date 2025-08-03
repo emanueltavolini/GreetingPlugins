@@ -1,0 +1,19 @@
+# Mensagem de boas-vindas visível apenas para o jogador que entrou
+welcome_user: "Bem-vindo %vault_prefix% %player_name% ao %server_name%"
+# Mensagem de boas-vindas visível para todos os jogadores
+welcome: "%vault_prefix% %player_name% entrou no servidor %server_name%"
+# Mensagem de despedida visível para todos os jogadores quando alguém sai
+goodbye: "%vault_prefix% %player_name% saiu do servidor %server_name%"
+
+messages:
+  help_header: "===== Comandos do Primerplugin ====="
+  help_version: "/primerplugin version - Mostra a versão do plugin"
+  help_reload: "/primerplugin reload - Recarrega a configuração"
+  help_messagesoutput: "/primerplugin messagesoutput - Mostra a mensagem de saída"
+  help_help: "/primerplugin help - Mostra esta ajuda"
+  version_message: "Versão do plugin: "
+  no_permission: "Você não tem permissão para usar este comando."
+  config_reloaded: "Configuração recarregada com sucesso."
+  only_in_game: "Este comando só pode ser usado dentro do jogo."
+  exit_message_show: "Mensagem de saída que você receberia: "
+  unknown_subcommand: "Subcomando desconhecido. Use: help, reload, version, mensajesalida"

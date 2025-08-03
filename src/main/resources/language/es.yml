@@ -1,0 +1,19 @@
+# Mensaje de bienvenida que ve solo el usuario que se unió
+welcome_user: "Bienvenido %vault_prefix% %player_name% a %server_name%"
+# Mensaje de bienvenida que ven todos los usuarios
+welcome: "%vault_prefix% %player_name% se unio al servidor %server_name%"
+# Mensjae de despedida que ven todos los jugadores, cuando un jugador sale del servidor
+goodbye: "%vault_prefix% %player_name% salió del servidor %server_name%"
+
+messages:
+  help_header: "===== Comandos de Greatingplugin ====="
+  help_version: "/primerplugin version - Muestra la versión del plugin"
+  help_reload: "/primerplugin reload - Recarga la configuración"
+  help_messagesoutput: "/primerplugin messagesoutput - Muestra el mensaje de salida"
+  help_help: "/primerplugin help - Muestra esta ayuda"
+  version_message: "Versión del plugin: "
+  no_permission: "No tienes permiso para usar este comando."
+  config_reloaded: "Configuración recargada correctamente."
+  only_in_game: "Este comando solo puede usarse dentro del juego."
+  exit_message_show: "Mensaje de salida que recibirías: "
+  unknown_subcommand: "Subcomando desconocido. Usa: help, reload, version, mensajesalida"

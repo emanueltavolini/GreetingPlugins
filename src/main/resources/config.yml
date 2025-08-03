@@ -1,0 +1,33 @@
+# Select language for the plugin:
+# en: English
+# Seleccione el idioma para el plugin:
+# es: Español
+# Selecione o idioma para o plugin:
+# pt: Português
+# Seleziona la lingua per il plugin:
+# it: Italiano
+# Sélectionnez la langue du plugin :
+# fr: Français
+# Sprache für das Plugin auswählen:
+# de: Deutsch
+language: en
+
+# Server name
+# Nombre del servidor
+# Nome do servidor
+# Nom du serveur
+# Servername
+server_name: server_name
+
+# Command permissions
+# Permisos de comandos
+# Permissões de comando
+# Permessi di comando
+# Autorisations de commande
+# Befehlsberechtigungen
+permisos:
+  help: true
+  version: true
+  reload: true
+  mensajesalida: true
+  setlang: true
