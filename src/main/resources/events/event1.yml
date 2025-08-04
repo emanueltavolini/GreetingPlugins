@@ -1,0 +1,14 @@
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false

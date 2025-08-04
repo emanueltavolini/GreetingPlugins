@@ -10,6 +10,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
+import java.util.Map;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +24,54 @@ import java.util.ArrayList;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.configuration.ConfigurationSection;
+import java.io.InputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.io.File;
+
+
 
 public final class GreetingPlugin extends JavaPlugin implements Listener, TabCompleter {
+    private List<String> getResourceFolderFiles(String folder) {
+        List<String> filenames = new ArrayList<>();
+        try {
+            URL url = getClass().getClassLoader().getResource(folder);
+            if (url == null) {
+                return filenames;  // No existe la carpeta
+            }
+            if (url.getProtocol().equals("jar")) {
+                String path = url.getPath();
+                String jarPath = path.substring(5, path.indexOf("!"));
+                try (JarFile jar = new JarFile(jarPath)) {
+                    jar.stream().forEach(jarEntry -> {
+                        String name = jarEntry.getName();
+                        if (name.startsWith(folder + "/") && !jarEntry.isDirectory()) {
+                            filenames.add(name.substring((folder + "/").length()));
+                        }
+                    });
+                }
+            } else if (url.getProtocol().equals("file")) {
+                File folderFile = new File(url.toURI());
+                if (folderFile.isDirectory()) {
+                    for (File file : folderFile.listFiles()) {
+                        if (file.isFile()) {
+                            filenames.add(file.getName());
+                        }
+                    }
+                }
+            }
+        } catch (IOException | URISyntaxException e) {
+            getLogger().warning("Error listando recursos: " + e.getMessage());
+        }
+        return filenames;
+    }
 
     private File playerDataFile;
     private FileConfiguration playerDataConfig;
@@ -28,6 +79,7 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        copiarCarpetaEventos();
         saveResource("readme.txt", false);
         guardarArchivosIdioma();
 
@@ -46,7 +98,30 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
         getServer().getPluginManager().registerEvents(this, this);
         this.getCommand("greeting").setTabCompleter(this);
         getLogger().info("Plugin activated");
+
     }
+    private void copiarCarpetaEventos() {
+        File carpetaDestino = new File(getDataFolder(), "events");
+
+        if (!carpetaDestino.exists()) {
+            carpetaDestino.mkdirs();
+
+            // Obtener lista de archivos en "events/" del jar
+            try {
+                for (String nombreArchivo : getResourceFolderFiles("events")) {
+                    InputStream input = getResource("events/" + nombreArchivo);
+                    if (input != null) {
+                        File archivoDestino = new File(carpetaDestino, nombreArchivo);
+                        Files.copy(input, archivoDestino.toPath());
+                        input.close();
+                    }
+                }
+            } catch (IOException e) {
+                getLogger().warning("No se pudo copiar la carpeta 'events': " + e.getMessage());
+            }
+        }
+    }
+
 
     @Override
     public void onDisable() {
@@ -256,7 +331,88 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
         for (Player online : getServer().getOnlinePlayers()) {
             online.sendMessage(msgTodos);
         }
+
+        File eventsFolder = new File(getDataFolder(), "events");
+        if (eventsFolder.exists() && eventsFolder.isDirectory()) {
+            for (File file : eventsFolder.listFiles()) {
+                if (file.getName().endsWith(".yml")) {
+                    FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+
+                    List<Map<?, ?>> eventos = (List<Map<?, ?>>) cfg.getList("events");
+                    if (eventos == null) continue;
+
+                    for (Map<?, ?> eventSection : eventos) {
+                        // Obtener datos del evento
+                        String type = (String) eventSection.get("type");
+                        if (type == null) continue;
+
+                        boolean once = false;
+                        if (eventSection.containsKey("once")) {
+                            once = (boolean) eventSection.get("once");
+                        }
+
+                        int delayTicks = 0;
+                        if (eventSection.containsKey("delay")) {
+                            Object delayObj = eventSection.get("delay");
+                            if (delayObj instanceof Integer) {
+                                delayTicks = (Integer) delayObj;
+                            } else if (delayObj instanceof String) {
+                                try {
+                                    delayTicks = Integer.parseInt((String) delayObj);
+                                } catch (NumberFormatException ex) {
+                                    delayTicks = 0;
+                                }
+                            }
+                        }
+
+                        if (once && jugador.hasPlayedBefore()) {
+                            // Este evento se ejecuta solo una vez, y el jugador ya jugó antes: saltar
+                            continue;
+                        }
+
+                        final String tipoEvento = type.toLowerCase();
+                        final int delay = delayTicks;
+
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (tipoEvento.equals("message")) {
+                                    String msgjugador = (String) eventSection.get("message");
+                                    if (msgjugador != null) {
+                                        msgjugador = aplicarNombreServidor(msgjugador);
+                                        msgjugador = aplicarPlaceholders(jugador, msgjugador);
+                                        msgjugador = ChatColor.translateAlternateColorCodes('&', msgjugador);
+                                        jugador.sendMessage(msgjugador);
+                                    }
+                                } else if (tipoEvento.equals("command")) {
+                                    String comando = (String) eventSection.get("command");
+                                    if (comando != null) {
+                                        comando = comando.replace("%player%", jugador.getName());
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), comando);
+                                    }
+                                } else if (tipoEvento.equals("give")) {
+                                    String itemStr = (String) eventSection.get("item");
+                                    int amount = 1;
+                                    if (eventSection.get("amount") != null) {
+                                        amount = (int) eventSection.get("amount");
+                                    }
+                                    try {
+                                        Material material = Material.valueOf(itemStr.toUpperCase());
+                                        ItemStack item = new ItemStack(material, amount);
+                                        jugador.getInventory().addItem(item);
+                                    } catch (IllegalArgumentException ex) {
+                                        Bukkit.getLogger().warning("Ítem inválido en archivo de evento: " + itemStr);
+                                    }
+                                }
+                            }
+                        }.runTaskLater(this, delay);
+                    }
+                }
+            }
+        }
     }
+
+
 
     @EventHandler
     public void alSalir(PlayerQuitEvent e) {
@@ -269,5 +425,3 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
         e.setQuitMessage(msg);
     }
 }
-
-
