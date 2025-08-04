@@ -3,12 +3,15 @@ events:
     message: Type message
     delay: 40
     once: false
+    enable: false
   - type: command
-    command: say type command
+    command: say command
     delay: 40
     once: false
+    enable: false
   - type: give
     item: grass_block
     amount: 1
     delay: 40
     once: false
+    enable: false

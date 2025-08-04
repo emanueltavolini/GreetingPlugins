@@ -81,6 +81,13 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
         saveDefaultConfig();
         copiarCarpetaEventos();
         saveResource("readme.txt", false);
+        File pluginFolder = getDataFolder();
+        File eventsFolder = new File(pluginFolder, "events");
+
+        if (!eventsFolder.exists()) {
+            eventsFolder.mkdirs();
+        }
+        File originalFile = new File(eventsFolder, "event.txt");
         guardarArchivosIdioma();
 
         // Cargar playerdata.yml
@@ -342,9 +349,15 @@ public final class GreetingPlugin extends JavaPlugin implements Listener, TabCom
                     if (eventos == null) continue;
 
                     for (Map<?, ?> eventSection : eventos) {
+                        Boolean enabled = (Boolean) eventSection.get("enable");
+                        if (enabled != null && !enabled) {
+                            continue; // Saltar evento desactivado
+                        }
                         // Obtener datos del evento
                         String type = (String) eventSection.get("type");
-                        if (type == null) continue;
+                        if (type == null) {
+                            continue;
+                        }
 
                         boolean once = false;
                         if (eventSection.containsKey("once")) {

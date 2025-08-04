@@ -1,0 +1,293 @@
+English:
+Events:
+In the event1.yml file, you can create different events for when a player joins the server.
+The available event types (type) are:
+1) command: A specified command will be executed automatically when a player joins the server:
+events:
+  - type: command --> Defines the type of event.
+    command: say Command --> command to execute.
+    delay: 40 --> Delay in ticks, to execute the command.
+    once: false --> If true the command will only be executed when the player enters the server for the first time.
+    enable: false --> If it is true the event will be active, but when it turns false the event is deactivated.
+
+2) message: A message will be sent to the player when they enter the server:
+events:
+  - type: message --> Defines the type of event.
+    message: Message --> Message to send to the player
+    delay: 40 --> Delay in ticks, to send the message.
+    once: false --> If true the message will only be sent when the player enters the server for the first time.
+    enable: false --> If it is true the event will be active, but when it turns false the event is deactivated.
+
+3) give: An item will be given to the player when they enter:
+events:
+  - type: give --> Defines the type of event.
+    item: grass_block --> Item to give to the player.
+    amount: 1 --> Quantity of the item to be delivered.
+    delay: 40 --> Delay in ticks, to send the message.
+    once: true --> If true the item will only be given when the player enters the server for the first time.
+    enable: false --> If it is true the event will be active, but when it turns false the event is deactivated.
+
+Structure:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
+
+
+Español:
+Eventos (events):
+En el archivo event1.yml podras crear diferentes eventos, para cuando un jugador se una al servidor.
+Los tipos (type) eventos disponibles son:
+
+1) command: se ejecutara un comando establecido automaticamente cuando un jagdor entra al servidor:
+events:
+  - type: command --> Define el tipo de evento.
+    command: say Comando --> Comando a ejecutar.
+    delay: 40 --> Tiempo de espera en Ticks, para ejecutar el comando.
+    once: false --> Si es true el comando solo se ejecutara cuando el jugador entre por primera vez al servidor.
+    enable: false --> Si es true el evento estara activo, pero cuando pasa a false se desactiva el evento.
+
+2) message: se le enviara un mensaje al jugador cuando entre al servidor:
+events:
+  - type: message --> Define el tipo de evento.
+    message: mensaje --> Mensaje a enviar al jugador
+    delay: 40 --> Tiempo de espera en Ticks, para enviar el mensaje.
+    once: false --> Si es true el mensaje solo se enviara cuando el jugador entre por primera vez al servidor.
+    enable: false --> Si es true el evento estara activo, pero cuando pasa a false se desactiva el evento.
+
+3) give: se le dara un item al jugador cuando entré:
+events:
+  - type: give --> Define el tipo de evento.
+    item: grass_block --> Item a dar al jugador.
+    amount: 1 --> Cantidad del item a entregar.
+    delay: 40 --> Tiempo de espera en Ticks, para dar el item al jugador.
+    once: true --> Si es true el item solo se dará cuando el jugador entre por primera vez al servidor.
+    enable: true --> Si es true el evento estara activo, pero cuando pasa a false se desactiva el evento.
+
+Estructura:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
+
+Português:
+Eventos (events):
+No arquivo event1.yml, você pode criar diferentes eventos para quando um jogador entra no servidor.
+Os tipos de eventos disponíveis são:
+
+1) command: Um comando especificado será executado automaticamente quando um jogador entrar no servidor:
+events:
+  - type: command --> Define o tipo de evento.
+    command: say comando --> comando para executar.
+    delay: 40 --> Tempo de espera em ticks para executar o comando.
+    once: false --> Se true, o comando só será executado quando o jogador entrar no servidor pela primeira vez.
+    enable: false --> Se for verdadeiro, o evento estará ativo, mas quando se tornar falso, o evento será desativado.
+
+2) message: uma mensagem será enviada ao jogador quando ele entrar no servidor:
+events:
+  - type: message --> Define o tipo de evento.
+    message: mensaje --> Mensagem para enviar ao jogador
+    delay: 40 --> Tempo de espera em ticks para enviar a mensagem.
+    once: false --> Se true, a mensagem só será enviada quando o jogador entrar no servidor pela primeira vez.
+    enable: false --> Se for true, o evento estará ativo, mas quando se tornar falso, o evento será desativado.
+
+3) give: um item será dado ao jogador quando ele entrar:
+events:
+  - type: give --> Define o tipo de evento.
+    item: grass_block --> Item para dar ao jogador.
+    amount: 1 --> Quantidade do item a ser entregue.
+    delay: 40 --> Tempo de espera em Ticks para entregar o item ao jogador.
+    once: true --> Se true, o item só será dado quando o jogador entrar no servidor pela primeira vez.
+    enable: true --> Se for true, o evento estará ativo, mas quando se tornar falso, o evento será desativado.
+
+Estrutura:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
+
+Italiano
+Eventi (events):
+Nel file event1.yml, puoi creare diversi eventi per quando un giocatore si unisce al server.
+I tipi (type) di evento disponibili sono:
+
+1) command: un comando set verrà eseguito automaticamente quando un hacker accede al server:
+events:
+  - type: command --> Definisce il tipo di evento.
+    command: say comando --> Comando da eseguire.
+    delay: 40 --> Ritardo in tick per eseguire il comando.
+    once: false --> Se è true, il comando verrà eseguito solo quando il giocatore accede al server per la prima volta.
+    enable: false --> Se è true l'evento sarà attivo, ma se diventa falso l'evento sarà disattivato.
+
+2) message: verrà inviato un messaggio al giocatore quando entra nel server:
+events:
+  - type: message --> Definisce il tipo di evento.
+    message: Messaggio --> Messaggio da inviare al giocatore
+    delay: 40 --> Ritardo in tick per inviare il messaggio.
+    once: false --> Se è true, il messaggio verrà inviato solo quando il giocatore accede al server per la prima volta.
+    enable: false --> Se è true l'evento sarà attivo, ma se diventa falso l'evento sarà disattivato.
+
+3) give: un oggetto verrà dato al giocatore quando entra:
+events:
+  - type: give --> Definisce il tipo di evento.
+    item: grass_block --> Oggetto da dare al giocatore.
+    amount: 1 --> Quantità dell'articolo da consegnare.
+    delay: 40 --> Ritardo in tick per consegnare l'oggetto al giocatore.
+    once: true --> Se è true, l'oggetto verrà assegnato solo quando il giocatore accede al server per la prima volta.
+    enable: true --> Se è true l'evento sarà attivo, ma se diventa falso l'evento sarà disattivato.
+
+Struttura:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
+
+Français:
+Événements (events):
+Dans le fichier event1.yml, vous pouvez créer différents événements lorsqu'un joueur rejoint le serveur.
+Les types (type) d'événements disponibles sont:
+
+1) command: se ejecutara un comando establecido automaticamente cuando un jagdor entra al servidor:
+events:
+  - type: command --> Définit le type d'événement.
+    command: say Commande --> Commande à exécuter.
+    delay: 40 --> Délai en ticks pour exécuter la commande.
+    once: false --> Si true, la commande ne sera exécutée que lorsque le joueur entrera sur le serveur pour la première fois.
+    enable: false --> Si c'est true, l'événement sera actif, mais lorsqu'il devient faux, l'événement est désactivé.
+
+2) message: Un message sera envoyé au joueur lorsqu'il entrera sur le serveur :
+events:
+  - type: message --> Définit le type d'événement.
+    message: Message --> Message à envoyer au joueur.
+    delay: 40 --> Délai en ticks pour envoyer le message.
+    once: false --> Si c'est true, le message ne sera envoyé que lorsque le joueur entrera sur le serveur pour la première fois.
+    enable: false --> Si c'est true, l'événement sera actif, mais lorsqu'il devient faux, l'événement est désactivé.
+
+3) give: Un objet sera donné au joueur à son entrée:
+   events:
+     - type: give --> Définit le type d'événement.
+       item: grass_block --> Objet à donner au joueur.
+       amount: 1 --> Quantité de l'article à livrer.
+       delay: 40 --> Délai en ticks, pour donner l'objet au joueur.
+       once: true --> Si c'est vrai, l'objet ne sera donné que lorsque le joueur entrera sur le serveur pour la première fois.
+       enable: true --> Si c'est vrai, l'événement sera actif, mais lorsqu'il devient faux, l'événement est désactivé.
+
+Structure:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
+
+Deutsch:
+Veranstaltungen (events):
+In der Datei event1.yml können Sie verschiedene Ereignisse für den Beitritt eines Spielers zum Server erstellen.
+Die verfügbaren Ereignistypen (type) sind:
+
+1) command: Ein festgelegter Befehl wird automatisch ausgeführt, wenn ein Hacker den Server betritt:
+events:
+  - type: command --> Definiert den Ereignistyp.
+    command: say Befehl --> Befehl zur Ausführung.
+    delay: 40 --> Verzögerung in Ticks, um den Befehl auszuführen.
+    once: false --> Wenn „true“, wird der Befehl nur ausgeführt, wenn der Spieler den Server zum ersten Mal betritt.
+    enable: false --> Wenn der Wert „true“ ist, ist das Ereignis aktiv, wenn der Wert jedoch „false“ ist, wird das Ereignis deaktiviert.
+
+2) message: Beim Betreten des Servers wird dem Spieler eine Nachricht gesendet:
+events:
+  - type: message --> Definiert den Ereignistyp.
+    message: Nachricht --> An den Spieler zu sendende Nachricht.
+    delay: 40 --> Verzögerung in Ticks, um die Nachricht zu senden.
+    once: false --> Wenn „true“, wird die Nachricht nur gesendet, wenn der Spieler den Server zum ersten Mal betritt.
+    enable: false --> Wenn der Wert „true“ ist, ist das Ereignis aktiv, wenn der Wert jedoch „false“ ist, wird das Ereignis deaktiviert.
+
+3) give: se le dara un item al jugador cuando entré:
+events:
+  - type: give --> Definiert den Ereignistyp.
+    item: grass_block --> Gegenstand, der dem Spieler gegeben werden soll.
+    amount: 1 --> Menge des zu liefernden Artikels.
+    delay: 40 --> Verzögerung in Ticks, um dem Spieler den Gegenstand zu geben.
+    once: true --> Wenn dies der Fall ist, wird der Gegenstand nur ausgegeben, wenn der Spieler den Server zum ersten Mal betritt.
+    enable: true --> Wenn der Wert „true“ ist, ist das Ereignis aktiv, wenn der Wert jedoch „false“ ist, wird das Ereignis deaktiviert.
+
+Struktur:
+events:
+  - type: message
+    message: Type message
+    delay: 40
+    once: false
+    enable: false
+  - type: command
+    command: say type command
+    delay: 40
+    once: false
+    enable: false
+  - type: give
+    item: grass_block
+    amount: 1
+    delay: 40
+    once: false
+    enable: false
